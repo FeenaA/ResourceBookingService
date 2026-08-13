@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ResourceBooking.Api.Domain.Entities;
 using ResourceBooking.Api.Domain.Enums;
+using ResourceBooking.Api.Contracts.Resources;
 
 namespace ResourceBooking.Api.Controllers;
 
@@ -48,5 +49,65 @@ public sealed class ResourcesController : ControllerBase
         }
 
         return Ok(resource);
+    }
+
+    [HttpPost]
+    public ActionResult<Resource> Create(CreateResourceRequest request)
+    {
+        var resource = new Resource
+        {
+            Id = Resources.Count == 0
+                ? 1
+                : Resources.Max(r => r.Id) + 1,
+            Name = request.Name,
+            Type = request.Type,
+            Capacity = request.Capacity,
+            Description = request.Description
+        };
+
+        Resources.Add(resource);
+
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = resource.Id },
+            resource);
+    }
+
+    [HttpPut("{id:int}")]
+    public ActionResult<Resource> Update(
+    int id,
+    UpdateResourceRequest request)
+    {
+        var resource = Resources.FirstOrDefault(
+            resource => resource.Id == id);
+
+        if (resource is null)
+        {
+            return NotFound();
+        }
+
+        resource.Name = request.Name;
+        resource.Type = request.Type;
+        resource.Capacity = request.Capacity;
+        resource.Description = request.Description;
+        resource.IsActive = request.IsActive;
+
+        return Ok(resource);
+    }
+
+    [HttpDelete("{id:int}")]
+    public IActionResult Delete(int id)
+    {
+        var resource = Resources.FirstOrDefault(
+            resource => resource.Id == id);
+
+        if (resource is null)
+        {
+            return NotFound();
+        }
+
+        Resources.Remove(resource);
+
+        return NoContent();
     }
 }
