@@ -1,6 +1,42 @@
-@ResourceBooking.Api_HostAddress = http://localhost:5143
-
-GET {{ResourceBooking.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+@ResourceBooking_Api_HostAddress = http://localhost:5143
 
 ###
+
+POST {{ResourceBooking_Api_HostAddress}}/api/resources
+Content-Type: application/json
+
+{
+  "name": "Meeting Room B",
+  "type": "MeetingRoom",
+  "capacity": 12,
+  "description": "Large meeting room"
+}
+
+###
+
+PUT {{ResourceBooking_Api_HostAddress}}/api/resources/1
+Content-Type: application/json
+
+{
+  "name": "Meeting Room A Updated",
+  "type": "MeetingRoom",
+  "capacity": 10,
+  "description": "Updated meeting room",
+  "isActive": true
+}
+
+###
+
+GET {{ResourceBooking_Api_HostAddress}}/api/resources/1
+
+###
+
+DELETE {{ResourceBooking_Api_HostAddress}}/api/resources/2
+
+###
+
+GET {{ResourceBooking_Api_HostAddress}}/api/resources/2
+
+###
+
+GET {{ResourceBooking_Api_HostAddress}}/api/resources
