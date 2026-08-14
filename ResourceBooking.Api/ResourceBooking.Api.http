@@ -40,3 +40,52 @@ GET {{ResourceBooking_Api_HostAddress}}/api/resources/2
 ###
 
 GET {{ResourceBooking_Api_HostAddress}}/api/resources
+
+###
+
+POST {{ResourceBooking_Api_HostAddress}}/api/resources
+Content-Type: application/json
+
+{
+  "name": "",
+  "type": "MeetingRoom",
+  "capacity": 0,
+  "description": "Invalid resource"
+}
+
+###
+
+POST {{ResourceBooking_Api_HostAddress}}/api/resources
+Content-Type: application/json
+
+{
+  "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  "type": "MeetingRoom",
+  "capacity": 5,
+  "description": "Test"
+}
+
+###
+
+PUT {{ResourceBooking_Api_HostAddress}}/api/resources/1
+Content-Type: application/json
+
+{
+  "name": "",
+  "type": "MeetingRoom",
+  "capacity": -1,
+  "description": "Invalid update",
+  "isActive": true
+}
+
+###
+
+POST {{ResourceBooking_Api_HostAddress}}/api/resources
+Content-Type: application/json
+
+{
+  "name": "Test Resource",
+  "type": "UnknownType",
+  "capacity": 5,
+  "description": "Invalid enum test"
+}
