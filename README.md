@@ -9,19 +9,24 @@ The project is intended as a backend service for managing bookable resources suc
 - C#
 - .NET 10
 - ASP.NET Core Web API
+- Entity Framework Core
+- SQLite
 - REST API
+- Swagger / OpenAPI
 - Git
 
 ## Current Features
 
 - Resource domain model
 - CRUD operations for resources
+- Persistent storage with Entity Framework Core and SQLite
+- Database migrations
 - Request DTOs for create and update operations
+- Input validation
 - HTTP endpoints for managing resources
 - Manual API testing with `.http` requests
 - JSON serialization of enum values as strings
-
-At the current stage, resources are stored in memory.
+- Swagger UI in the Development environment
 
 ## API Endpoints
 
@@ -46,6 +51,18 @@ At the current stage, resources are stored in memory.
 }
 ```
 
+## Database Setup
+
+The project uses SQLite for persistent storage.
+
+Apply the existing Entity Framework Core migrations before running the API:
+
+```bash
+dotnet ef database update --project ResourceBooking.Api
+```
+
+The local SQLite database file is excluded from version control.
+
 ## API Testing
 
 Example requests are available in:
@@ -60,20 +77,19 @@ ResourceBookingService/
 │   ├── Contracts/
 │   │   └── Resources/
 │   ├── Controllers/
+│   ├── Data/
 │   ├── Domain/
 │   │   ├── Entities/
 │   │   └── Enums/
+│   ├── Migrations/
 │   ├── Program.cs
 │   └── ResourceBooking.Api.http
-├── ResourceBookingService.sln
+├── ResourceBookingService.slnx
 └── README.md
 ```
 
 ## Planned Development
 
-- Input validation
-- Persistent storage with Entity Framework Core
-- Database migrations
 - Booking domain model
 - Booking conflict validation
 - Automated tests

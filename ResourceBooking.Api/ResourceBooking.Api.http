@@ -31,15 +31,15 @@ GET {{ResourceBooking_Api_HostAddress}}/api/resources/1
 
 ###
 
-DELETE {{ResourceBooking_Api_HostAddress}}/api/resources/2
-
-###
-
-GET {{ResourceBooking_Api_HostAddress}}/api/resources/2
-
-###
-
 GET {{ResourceBooking_Api_HostAddress}}/api/resources
+
+###
+
+DELETE {{ResourceBooking_Api_HostAddress}}/api/resources/1
+
+###
+
+GET {{ResourceBooking_Api_HostAddress}}/api/resources/1
 
 ###
 
