@@ -6,18 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new()
-    {
-        Title = "Resource Booking API",
-        Version = "v1",
-        Description = "REST API for resource booking and management."
-    });
-});
-
 builder.Services
     .AddControllers()
     .AddJsonOptions(options =>
@@ -36,8 +24,12 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint(
+            "/openapi/v1.json",
+            "Resource Booking API v1");
+    });
 }
 
 app.MapControllers();
