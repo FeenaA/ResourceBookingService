@@ -11,4 +11,6 @@ public class ResourceBookingDbContext : DbContext
     }
 
     public DbSet<Resource> Resources => Set<Resource>();
+
+    public DbSet<Booking> Bookings => Set<Booking>();
 }

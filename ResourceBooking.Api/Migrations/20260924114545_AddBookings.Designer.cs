@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResourceBooking.Api.Data;
 
@@ -10,9 +11,11 @@ using ResourceBooking.Api.Data;
 namespace ResourceBooking.Api.Migrations
 {
     [DbContext(typeof(ResourceBookingDbContext))]
-    partial class ResourceBookingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260924114545_AddBookings")]
+    partial class AddBookings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.11");
