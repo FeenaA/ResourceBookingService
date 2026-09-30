@@ -15,4 +15,6 @@ public sealed class Resource
     public string? Description { get; set; }
 
     public bool IsActive { get; set; } = true;
+
+    public ICollection<Booking> Bookings { get; set; } = [];
 }
